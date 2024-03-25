@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "tgutui"
+version = "0.1.0"
+description = "A Demonstration of using test equipment in a TUI"
+authors = ["Chris <dev@tgu-ltd.uk>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+textual = "^0.53.1"
+jsonrpclib-pelix = "^0.4.3.2"
+PyVISA = "^1.14.1"
+PyVISA-py = "^0.7.2"
+opencv-python = "^4.9.0.80"
+textual-slider = "^0.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
