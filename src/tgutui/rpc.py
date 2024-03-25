@@ -28,7 +28,7 @@ class Rpc:
         try:
             return getattr(request, method)(*args)
         except ConnectionRefusedError:
-            logging.error(f"Connection refused:{address}, {method}")
+            logging.debug(f"Connection refused:{address}, {method}")
         return None
 
     def register(self, method: Callable, name: str) -> None:

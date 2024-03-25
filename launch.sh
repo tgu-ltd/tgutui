@@ -2,7 +2,7 @@
 
 KITTY="/usr/local/kitty/kitty/launcher/kitty"
 
-DEBUG=1
+DEBUG=0
 LOG_RPC=0
 LAUNCHED=1
 USE_RIGOL=1

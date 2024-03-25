@@ -117,7 +117,7 @@ class Rigol:
             return x
         self._data.date = datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
         self._data.freq = f"{round(result(':MEASure:FREQuency?') / 1000, 2)}"
-        self._data.duty = f"{round(result(':MEASure:PDUTy?'), 2) * 100}%"
+        self._data.duty = f"{round(result(':MEASure:PDUTy?') * 100, 2)}%"
         self._data.vavg = f"{round(result(':MEASure:VAVG?'), 2)}"
         self._data.volt = f"{round(result(':MEASure:VAMP?'), 2)}"
         #logging.info(repr(self._data))
