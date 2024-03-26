@@ -13,7 +13,6 @@ from threading import Thread
 from rpi_hardware_pwm import HardwarePWM
 from jsonrpclib.SimpleJSONRPCServer import SimpleJSONRPCServer
 
-
 class PiPwm: 
     def __init__(self):
         self._port = 34962

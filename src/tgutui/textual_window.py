@@ -112,7 +112,7 @@ class TextualWindow(App):
         self.rpc.register(self.update_camera_data, "update_camera")
         self.rpc.register(self.textual_ack, "textual_ack")
         self.pi = Server(f"http://{Kit.PIPWM_IP}:{Kit.PIPWM_PORT}")
-        self._volts_map = [0.5, 1, 2, 5]
+        self._volts_map = [0.2,0.5, 1, 2, 5]
         self._times_map = [
             0.000005,
             0.00005,
@@ -129,7 +129,7 @@ class TextualWindow(App):
         self.scope_duty = Label("", classes="data")
 
         self.pwm_freq_slider = Slider(id="pwm_freq_slider",min=1, max=100, step=1, value=1)
-        self.pwm_duty_slider = Slider(id="pwm_duty_slider",min=10, max=90, step=10, value=10)
+        self.pwm_duty_slider = Slider(id="pwm_duty_slider",min=0, max=90, step=10, value=10)
         self.channel_slider = Slider(id="channel_slider", min=1, max=2, step=1, value=1)
         self.offset_slider = Slider(id="offset_slider", min=-2.0, max=2.0, step=0.2, value=0.0)
         self.volts_slider = Slider(id="volts_slider", min=0, max=4, step=1, value=0)
