@@ -115,9 +115,12 @@ class Rigol:
                 logging.error(f"{cmd}:{x} {e}")
                 x = 0.01
             return x
+        freq = result(':MEASure:FREQuency?')
+        duty = result(':MEASure:PDUTy?')
+        vavg = result(':MEASure:VAVG?')
+        volt = result(':MEASure:VAMP?')
         self._data.date = datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
-        self._data.freq = f"{round(result(':MEASure:FREQuency?') / 1000, 2)}"
-        self._data.duty = f"{round(result(':MEASure:PDUTy?') * 100, 2)}%"
-        self._data.vavg = f"{round(result(':MEASure:VAVG?'), 2)}"
-        self._data.volt = f"{round(result(':MEASure:VAMP?'), 2)}"
-        #logging.info(repr(self._data))
+        self._data.freq = f"{round(freq / 1000, 2)}" if freq <= 9999 else self._data.freq
+        self._data.duty = f"{round(duty * 100, 2)}%" if duty <= 9999 else self._data.duty
+        self._data.vavg = f"{round(vavg, 2)}" if vavg <= 9999 else self._data.vavg
+        self._data.volt = f"{round(vavg, 2)}" if volt <= 9999 else self._data.volt

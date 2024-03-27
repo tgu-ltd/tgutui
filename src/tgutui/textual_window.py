@@ -2,9 +2,10 @@ import logging
 import traceback
 from jsonrpclib import Server
 from textual.app import App
-from textual import on, work
+
 from textual.timer import Timer
 from textual_slider import Slider
+from textual import on, work, events
 from textual.containers import Horizontal, Vertical
 from textual.widgets import Label, Button, Switch
 from textual.app import ComposeResult
@@ -12,6 +13,17 @@ from textual.app import ComposeResult
 from tgutui.kit import Kit, TextualKit
 from tgutui.rigol import Rigol
 from tgutui.rpc import Rpc
+
+
+class ScrollSlider(Slider):
+
+    def on_mouse_scroll_down(self, event: events.MouseScrollDown) -> None:
+        self.value = self.value - self.step
+        event.stop()
+
+    def on_mouse_scroll_up(self, event: events.MouseScrollDown) -> None:
+        self.value = self.value + self.step
+        event.stop()
 
 class TextualWindow(App):
     """ This class contains all the Textual widgets to control the camera, scope and Pi PWM """
@@ -128,12 +140,12 @@ class TextualWindow(App):
         self.scope_vavg = Label("", classes="data")
         self.scope_duty = Label("", classes="data")
 
-        self.pwm_freq_slider = Slider(id="pwm_freq_slider",min=1, max=100, step=1, value=1)
-        self.pwm_duty_slider = Slider(id="pwm_duty_slider",min=0, max=90, step=10, value=10)
-        self.channel_slider = Slider(id="channel_slider", min=1, max=2, step=1, value=1)
-        self.offset_slider = Slider(id="offset_slider", min=-2.0, max=2.0, step=0.2, value=0.0)
-        self.volts_slider = Slider(id="volts_slider", min=0, max=4, step=1, value=0)
-        self.time_slider = Slider(id="time_slider", min=0, max=6, step=1, value=0)
+        self.pwm_freq_slider = ScrollSlider(id="pwm_freq_slider",min=1, max=100, step=1, value=1)
+        self.pwm_duty_slider = ScrollSlider(id="pwm_duty_slider",min=0, max=90, step=10, value=0)
+        self.channel_slider = ScrollSlider(id="channel_slider", min=1, max=2, step=1, value=1)
+        self.offset_slider = ScrollSlider(id="offset_slider", min=-2.0, max=2.0, step=0.1, value=0.0)
+        self.volts_slider = ScrollSlider(id="volts_slider", min=0, max=4, step=1, value=0)
+        self.time_slider = ScrollSlider(id="time_slider", min=0, max=6, step=1, value=0)
         self.pwm_freq = Label(str(self.pwm_freq_slider.value), classes="data")
         self.pwm_duty = Label(str(self.pwm_duty_slider.value), classes="data")
         self.scope_channel = Label(str(self.channel_slider.value), classes="data")
@@ -142,10 +154,10 @@ class TextualWindow(App):
         self.scope_time = Label(str(self._times_map[self.time_slider.value] * 10000), classes="data")
 
         self.focus_switch = Switch(id="focus_switch")
-        self.zoom_slider = Slider(id="zoom_slider",min=100, max=400, step=10, value=100,)
-        self.focus_slider = Slider(id="focus_slider", min=0, max=255, step=5, value=0)
-        self.pan_slider = Slider(id="pan_slider", min=-36000, max=36000, step=3600, value=0)
-        self.tilt_slider = Slider(id="tilt_slider", min=-36000, max=36000, step=3600, value=0)
+        self.zoom_slider = ScrollSlider(id="zoom_slider",min=100, max=400, step=10, value=100,)
+        self.focus_slider = ScrollSlider(id="focus_slider", min=0, max=255, step=5, value=0)
+        self.pan_slider = ScrollSlider(id="pan_slider", min=-36000, max=36000, step=3600, value=0)
+        self.tilt_slider = ScrollSlider(id="tilt_slider", min=-36000, max=36000, step=3600, value=0)
         self.camera_focus = Label(str(self.focus_slider.value), classes="data")
         self.camera_zoom = Label(str(self.zoom_slider.value), classes="data")
         self.camera_pan = Label(str(self.pan_slider.value), classes="data")
@@ -209,8 +221,8 @@ class TextualWindow(App):
             case self.argumented_switch.id:
                 self.rpc.request("update_argumented", value)
 
-    @on(Slider.Changed)
-    def _slider(self, event: Slider.Changed):
+    @on(ScrollSlider.Changed)
+    def _slider(self, event: ScrollSlider.Changed):
         """ Handle slider events and update corresponding values. """
         value = event.slider.value
         match event.slider.id:
