@@ -8,7 +8,7 @@
 
 **See**: This [Youtube](https://www.youtube.com/watch?v=uiTUZpZKRJw) demonstration to see it working
 
-**Image** []![ScreenShot](https://www.tgu-ltd.uk/img/tgutui.png)
+**Image** ![ScreenShot](https://www.tgu-ltd.uk/img/tgutui.png)
 
 ## Overview
 
