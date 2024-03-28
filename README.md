@@ -12,8 +12,7 @@
 
 ## Overview
 
-This python application utilizes some of the latest linux terminal tools to interface with test equipment.
-Its primary purpose is demonstrate what can be done in a terminal with the Kitty terminal and T.
+This python application uses a Linux terminal to graphical interface with test equipment. Its primary purpose is demonstrate what can be done in a Kitty terminal with the Textual framework.
 
 It includes the following features:
 
@@ -39,7 +38,7 @@ It includes the following features:
 
 ## How It Works
 
-The following sudo steps give an overview off how the application works
+The following sudo steps give an overview off how the application works...
 
 1. From within a poetry environment run the launch.sh script
 2. The script then opens Kitty os terminal window
@@ -54,7 +53,7 @@ The following sudo steps give an overview off how the application works
 7. The Textual application
       1. Connects to the Oscilloscope and polls for data
       2. Registers RPC methods
-8. The camera_window.py code then sends camera data to the textual_window.py code
+8. The camera_window.py then sends camera data to the textual_window.py
 9. The application has started
 
 ## Installation
@@ -79,7 +78,7 @@ For this project to work the following is required ...
 ## To Install and Run
 
 ```bash
-$ git clone this repo
+$ git clone https://github.com/tgu-ltd/tgutui.git
 $ cd tgutui
 $ chmod +x launch.sh
 $ poetry install
