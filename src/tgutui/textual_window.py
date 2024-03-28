@@ -241,7 +241,7 @@ class TextualWindow(App):
             case self.time_slider.id:
                 value = self._times_map[value]
                 self.rigol.set_time(value)
-                self.scope_time.update(str(value * 10000))
+                self.scope_time.update(str(value * 1000000))
             case self.pan_slider.id:
                 self.rpc.request("update_camera", "pan", value)
                 self.camera_pan.update(str(value))
@@ -335,7 +335,7 @@ class TextualWindow(App):
             with Horizontal(classes="right_top height_one"):
                 yield Label("KHz")
                 yield Label("Duty")
-                yield Label("Volts")
+                yield Label("VAmp")
                 yield Label("VAvg")
             with Horizontal(classes="right_top height_one mag_bot_one"):
                 yield self.scope_hertz

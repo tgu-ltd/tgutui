@@ -96,8 +96,8 @@ class CameraWindow:
         t.add_column("", style="blue", justify="left")
         t.add_row("Freq", str(self.scope.freq), "Auto", str(self.camera.data.auto_focus))
         t.add_row("Duty", str(self.scope.duty), "Zoom", str(self.camera.data.zoom))
-        t.add_row("Volt", str(self.scope.volt), "Focus", str(self.camera.data.focus))
-        t.add_row("Vavg", str(self.scope.vavg), "Tilt", str(self.camera.data.tilt))
+        t.add_row("VAmp", str(self.scope.volt), "Focus", str(self.camera.data.focus))
+        t.add_row("VAvg", str(self.scope.vavg), "Tilt", str(self.camera.data.tilt))
         t.add_row("", "", "Pan", str(self.camera.data.pan))
         self.console.print(t)
 

@@ -6,9 +6,9 @@
 
 **Note**: This is an experimental project for demonstration purposes only
 
-**See**: This **[Youtube](link)** video to see it working
+**See**: This [Youtube](https://www.youtube.com/watch?v=uiTUZpZKRJw) demonstration to see it working
 
-**Show image** link to tgu-server
+**Image** []![ScreenShot](https://www.tgu-ltd.uk/img/tgutui.png)
 
 ## Overview
 
